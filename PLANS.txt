@@ -1,0 +1,187 @@
+for each district
+  museum
+  bar
+  
+
+most anonymous (non-gendered) location
+
+categories:
+  Art Gallery
+
+
+DB:
+  Venue
+    id
+    ll
+    
+  venue-category
+
+  venue-timeofday
+    id
+    ll
+    ratio
+
+Theories:
+   
+
+
+Workers: 
+   9-5
+   Professional
+     4d4b7104d754a06370d81259
+
+???Homebodies -- probably 
+   9-5
+   Home
+   4e67e38e036454776db1fb3a
+
+Day-drinkers
+   9-11, 3-4
+   Bars: 4bf58dd8d48988d116941735
+   brewery: 4bf58dd8d48988d1d7941735
+   dive bar: 4bf58dd8d48988d118941735
+   gay bar 4bf58dd8d48988d1d8941735
+
+Perverts
+  Strip-club: 4bf58dd8d48988d183941735
+
+Tourist Nerds
+  Museum: 4bf58dd8d48988d181941735
+  10-4
+  Historical Area: 4deefb944765f83613cdba6e
+  Monument or Landmark: 4bf58dd8d48988d12d941735
+  zoos and aquariums 4bf58dd8d48988d17b941735
+
+Students
+  library 4bf58dd8d48988d12f941735
+  college/university: 4d4b7105d754a06372d81259
+  school: 4bf58dd8d48988d13b941735
+
+Religious
+   6am-9am
+   religious: 4bf58dd8d48988d131941735
+
+Morning Athletes:
+   5am-8am
+   Gym: 4bf58dd8d48988d175941735
+   Parks:
+
+Freelancers
+   9am-4pm
+   internet cafe: 4bf58dd8d48988d1f0941735
+
+Allnight partiers
+   12am-4am
+   Nighlife spots 4d4b7105d754a06376d81259
+
+Jewelry buyers
+   jewelry 4bf58dd8d48988d111951735
+
+Day Parks
+   9-3
+   
+WHERE DO THEY MEET
+  
+Night:
+  Museums/Art Galleries
+  Bars
+  Broadway shows: 
+  Movies
+  Parks
+  Travel Spot: 4d4b7105d754a06379d81259
+  Hotel:  
+    (where tourists go back to)
+  
+   
+
+MOVIE
+  Map:  colors light up when a category is 'established'
+  Sidebar: 
+     1. category colors of current labeling activities
+     2. category colors of previous times
+
+  colors come in, others lower opacity
+  then we watch these groups disperse/mix
+  then we see where everyone else is
+     ?user can filter?
+
+USER SELL:
+   avoid the tourists
+   avoid the perverts
+   avoid the students
+ 
+See intersections    
+
+    
+DATA ACQUISITION:
+  Baseline data:
+    1. get venues in ny that fall into categories
+    2. get a bunch of venues for 'where they go'
+    3. get target locations as places that trend in target categories
+    4. for oauth creation, download category list
+  Daily run:
+    https://developer.foursquare.com/docs/multi/multi.html
+       up to five requests at a time -- counts as a single request
+    1. query appropriate source venues, 
+          get user IDs of checkins and label the user
+    2. query target locations from trending locations in target categories
+    
+       add a table of 'rediscovered IDs' (subset of labeled users)
+            and where they are
+    3. get counts of how many people are at each venue (on the hour)
+
+
+  OAuth: 
+    1. What categories are you?
+    2. Propose a category-timerange
+    
+DATABASE
+   User:
+     foursq_user_id
+     oauth_token
+     gender
+
+   Venue
+     venue_id (unique?)
+     category
+     ll
+     last_gender_ratio
+
+   VenuePing
+     venue
+     count
+
+
+   Rediscovered
+     foursq_user
+     stereotype
+     ll
+     venue
+          
+     
+   StereoTypes
+     title
+     category
+     time
+     timedelta
+     color
+
+   TargetVenueCategories
+     "all fields are optional "
+     query
+     category
+     ll
+     time
+     timedelta
+
+   Labelings
+     foursq_user 
+     stereotype
+     ll
+
+
+
+  Checkin
+    datetime
+    venue
+    gender
