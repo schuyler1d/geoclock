@@ -15,14 +15,14 @@ virtualenv_support_dir = os.path.abspath(os.path.join(pwd, "requirements", "virt
 
 ret = subprocess.call(["python", "virtualenv.py", 
                        "--extra-search-dir=%s" % virtualenv_support_dir,
-                       "--never-download",
+                       #"--never-download", #celery needs to d/l some stuff
                        vedir])
 if ret: exit(ret)
 
 ret = subprocess.call([os.path.join(vedir, 'bin', 'pip'), "install",
                        "-E", vedir,
                        "--enable-site-packages",
-                       "--index-url=''",
+                       #"--index-url=''", #don't force local
                        "--requirement",os.path.join(pwd,"requirements/apps.txt")])
 if ret: exit(ret)
 
